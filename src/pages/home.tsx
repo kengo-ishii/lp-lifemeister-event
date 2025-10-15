@@ -2,6 +2,7 @@
 
 import Header from '@/src/components/header'
 import Hero from '@/src/components/hero'
+import Entry from '@/src/components/entry'
 import Footer from '@/src/components/footer'
 
 export default function Home() {
@@ -82,6 +83,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 予約セクション */}
+      <Entry />
 
       <Footer />
     </div>
