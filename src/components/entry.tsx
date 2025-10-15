@@ -44,7 +44,7 @@ export default function Entry() {
     
     try {
       // Firebase Functionsを初期化
-      const functions = getFunctions(app)
+      const functions = getFunctions(app, 'asia-northeast1')
       const sendEventReservation = httpsCallable(functions, 'sendEventReservation')
       
       // フォームデータを送信

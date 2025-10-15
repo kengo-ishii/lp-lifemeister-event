@@ -7,7 +7,7 @@ export default function Introduction() {
         <div className="text-center">
           {/* メインタイトル */}
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
-            "今の笑顔"を未来に残そう。
+            「今の笑顔」を未来に残そう。
           </h2>
           
           {/* サブタイトル */}
@@ -22,10 +22,10 @@ export default function Introduction() {
           {/* 家族の"いま"を残すこと */}
           <div className="text-center">
             <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-6">
-              家族の"いま"を残すことは、未来への贈りもの。
+              家族の「いま」を残すことは、未来への贈りもの。
             </h3>
             <p className="text-lg text-gray-600 leading-relaxed">
-              写真は、未来のあなたやお子さまに届ける"想い出のプレゼント"。<br />
+              写真は、未来のあなたやお子さまに届ける「想い出のプレゼント」。<br />
               何気ない今日の笑顔が、きっといつか、大切な宝物になります。
             </p>
           </div>
@@ -33,7 +33,7 @@ export default function Introduction() {
           {/* 変化の時代だからこそ */}
           <div className="text-center">
             <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-6">
-              変化の時代だからこそ、"これから"を考える時間を。
+              変化の時代だからこそ、「これから」を考える時間を。
             </h3>
             <p className="text-lg text-gray-600 leading-relaxed mb-4">
               物価の上昇、働き方の変化——<br />
@@ -49,7 +49,7 @@ export default function Introduction() {
             <p className="text-xl text-gray-700 leading-relaxed">
               撮影では笑顔を、<br />
               相談では安心を。<br />
-              このひとときが、あなたと家族の"やさしい一歩"になりますように。
+              このひとときが、あなたと家族の「やさしい一歩」になりますように。
             </p>
           </div>
         </div>
