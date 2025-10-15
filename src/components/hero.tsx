@@ -1,11 +1,25 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-gradient-to-br from-blue-50 to-indigo-100 py-20 overflow-hidden">
+      {/* 背景画像 */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero.jpg"
+          alt="Feel Life Hero Image"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* オーバーレイ */}
+        <div className="absolute inset-0 bg-white/70"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
           {/* メインタイトル */}
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
