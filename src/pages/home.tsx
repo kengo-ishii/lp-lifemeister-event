@@ -3,6 +3,7 @@
 import Header from '@/src/components/header'
 import Hero from '@/src/components/hero'
 import Entry from '@/src/components/entry'
+import EntryButton from '@/src/components/entryButton'
 import Footer from '@/src/components/footer'
 
 export default function Home() {
@@ -85,9 +86,14 @@ export default function Home() {
       </section>
 
       {/* 予約セクション */}
-      <Entry />
+      <div id="entry-section">
+        <Entry />
+      </div>
 
       <Footer />
+      
+      {/* フローティングボタン */}
+      <EntryButton />
     </div>
   )
 }
