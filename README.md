@@ -59,6 +59,25 @@ feel-life/
 - **プロジェクトID**: lp-lifemeister-event
 - **設定ファイル**: `lib/firebase.ts`
 - **Analytics**: 有効（ブラウザ環境のみ）
+- **Functions**: SendGridメール送信機能
+
+### SendGrid設定
+
+メール送信機能を使用するには、SendGridの設定が必要です：
+
+1. **SendGridアカウント作成**
+   - [SendGrid](https://sendgrid.com/)でアカウントを作成
+   - APIキーを生成
+
+2. **環境変数の設定**
+   ```bash
+   firebase functions:config:set sendgrid.key="your_sendgrid_api_key"
+   ```
+
+3. **Functionsのデプロイ**
+   ```bash
+   firebase deploy --only functions
+   ```
 
 ### Firebaseサービスの追加
 

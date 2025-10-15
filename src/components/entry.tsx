@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { getFunctions, httpsCallable } from 'firebase/functions'
+import { app } from '@/lib/firebase'
 
 export default function Entry() {
   const [selectedDate, setSelectedDate] = useState<string>('')
@@ -34,15 +36,41 @@ export default function Entry() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // フォーム送信処理
-    console.log('予約情報:', {
-      date: selectedDate,
-      time: selectedTime,
-      ...formData
-    })
-    alert('予約を受け付けました。確認のため、後日ご連絡いたします。')
+    
+    try {
+      // Firebase Functionsを初期化
+      const functions = getFunctions(app)
+      const sendEventReservation = httpsCallable(functions, 'sendEventReservation')
+      
+      // フォームデータを送信
+      const result = await sendEventReservation({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        date: selectedDate,
+        time: selectedTime
+      })
+      
+      // 成功時の処理
+      alert('予約を受け付けました。確認メールをお送りしました。')
+      
+      // フォームをリセット
+      setSelectedDate('')
+      setSelectedTime('')
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      })
+      
+    } catch (error) {
+      console.error('予約送信エラー:', error)
+      alert('申し訳ございません。送信に失敗しました。しばらく時間をおいて再度お試しください。')
+    }
   }
 
   return (
