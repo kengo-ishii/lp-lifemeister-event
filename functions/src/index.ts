@@ -1,12 +1,25 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
-import * as sgMail from '@sendgrid/mail'
+import { Resend } from 'resend'
 
 // Firebase Admin SDKを初期化
 admin.initializeApp()
 
-// SendGrid APIキーを設定（環境変数から取得）
-sgMail.setApiKey(functions.config().sendgrid?.key || process.env.SENDGRID_API_KEY || '')
+// Secret ManagerからAPIキーを取得する関数
+async function getResendApiKey(): Promise<string> {
+  try {
+    const { SecretManagerServiceClient } = require('@google-cloud/secret-manager')
+    const client = new SecretManagerServiceClient()
+    
+    const [version] = await client.accessSecretVersion({
+      name: 'projects/lp-lifemeister-event/secrets/resend_api/versions/latest'
+    })
+    return version.payload?.data?.toString() || ''
+  } catch (error) {
+    console.error('Failed to get Resend API key from Secret Manager:', error)
+    return process.env.RESEND_API_KEY || ''
+  }
+}
 
 interface EventReservationData {
   name: string
@@ -19,6 +32,16 @@ interface EventReservationData {
 
 export const sendEventReservation = functions.https.onCall(async (data: EventReservationData, context) => {
   try {
+    // Resend APIキーの取得
+    const resendApiKey = await getResendApiKey()
+    if (!resendApiKey) {
+      console.error('Resend API key is not configured')
+      throw new functions.https.HttpsError('failed-precondition', 'メール送信機能が設定されていません')
+    }
+
+    // Resendクライアントを更新
+    const resendClient = new Resend(resendApiKey)
+
     // データの検証
     if (!data.name || !data.email || !data.date || !data.time) {
       throw new functions.https.HttpsError('invalid-argument', '必須項目が不足しています')
@@ -31,8 +54,8 @@ export const sendEventReservation = functions.https.onCall(async (data: EventRes
 
     // 申込者へのお礼メール
     const customerEmail = {
-      to: email,
       from: 'noreply@ainna.jp',
+      to: [email],
       subject: '【Feel Life】イベント予約のご確認',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -65,8 +88,8 @@ export const sendEventReservation = functions.https.onCall(async (data: EventRes
 
     // 管理者への通知メール
     const adminEmail = {
-      to: 'ishii@ainna.jp',
       from: 'noreply@ainna.jp',
+      to: ['ishii@ainna.jp'],
       subject: `【新規予約】${name}様 - ${dateStr} ${time}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -98,11 +121,11 @@ export const sendEventReservation = functions.https.onCall(async (data: EventRes
 
     // メール送信
     await Promise.all([
-      sgMail.send(customerEmail),
-      sgMail.send(adminEmail)
+      resendClient.emails.send(customerEmail),
+      resendClient.emails.send(adminEmail)
     ])
 
-    // Firestoreに記録（オプション）
+    // Firestoreに記録
     await admin.firestore().collection('eventReservations').add({
       ...data,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),

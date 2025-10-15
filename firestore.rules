@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // イベント予約データのルール
+    match /eventReservations/{document} {
+      // Firebase Functionsからの書き込みのみ許可
+      allow write: if request.auth != null && request.auth.token.admin == true;
+      // 読み取りは認証されたユーザーのみ
+      allow read: if request.auth != null;
+    }
+    
+    // その他のコレクションは認証されたユーザーのみアクセス可能
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
