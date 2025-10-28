@@ -84,7 +84,7 @@ export default function EntryOgange() {
         <div className="mx-auto" style={{ maxWidth: '760px' }}>
           <div className="text-center mb-12 relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 inline-block px-8 py-4 rounded-full border-2 border-white" style={{ backgroundColor: '#fc9a47ff', outline: '8px solid #fc9a47ff', outlineOffset: '0px' }}>
-              今すぐ予約する
+              無料で参加する
             </h2>
           </div>
 
