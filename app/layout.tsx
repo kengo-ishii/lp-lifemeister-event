@@ -5,6 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://feel.ainna.co.jp'),
   title: '今の笑顔を未来に残そう｜feel by AINNA',
   description: '家族撮影とライフプラン相談が一緒に体験できるイベント「feel by AINNA」。プロカメラマンによる撮影データをプレゼント。家族の"いま"を残し、未来を考えるやさしいひとときを。',
   icons: {
@@ -20,10 +21,10 @@ export const metadata: Metadata = {
     description: '家族撮影とライフプラン相談が一緒に体験できるイベント「feel by AINNA」。プロカメラマンによる撮影データをプレゼント。家族の"いま"を残し、未来を考えるやさしいひとときを。',
     images: [
       {
-        url: '/feel_logo.png',
+        url: '/images/hero.png',
         width: 1200,
         height: 630,
-        alt: 'feel by AINNA',
+        alt: '今の笑顔を未来に残そう - feel by AINNA',
       },
     ],
     type: 'website',
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '今の笑顔を未来に残そう｜feel by AINNA',
     description: '家族撮影とライフプラン相談が一緒に体験できるイベント「feel by AINNA」。プロカメラマンによる撮影データをプレゼント。家族の"いま"を残し、未来を考えるやさしいひとときを。',
-    images: ['/feel_logo.png'],
+    images: ['/images/hero.png'],
   },
 }
 
