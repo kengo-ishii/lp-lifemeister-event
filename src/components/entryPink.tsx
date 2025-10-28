@@ -84,7 +84,7 @@ export default function EntryPink() {
         <div className="mx-auto" style={{ maxWidth: '760px' }}>
           <div className="text-center mb-12 relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 inline-block px-8 py-4 rounded-full border-2 border-white" style={{ backgroundColor: '#e4157fff', outline: '8px solid #e4157fff', outlineOffset: '0px' }}>
-              無料で参加する
+              札幌 無料撮影会 参加申込
             </h2>
           </div>
 

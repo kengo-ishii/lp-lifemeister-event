@@ -2,7 +2,9 @@
 
 import Header from '@/src/components/header'
 import Hero from '@/src/components/hero'
+import SEOContent from '@/src/components/seoContent'
 import News from '@/src/components/news'
+import Venue from '@/src/components/venue'
 import Entry from '@/src/components/entryPink'
 import Introduction from '@/src/components/introduction'
 import EntryOgange from '@/src/components/entryOgange'
@@ -17,7 +19,9 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* <Header /> */}
       <Hero />
+      <SEOContent />
       <News />
+      <Venue />
       <div id="entry-section">
         <Entry />
       </div>

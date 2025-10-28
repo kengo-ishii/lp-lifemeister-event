@@ -101,7 +101,7 @@ export const sendEventReservation = functions.region('asia-northeast1').https.on
     // 管理者への通知メール
     const adminEmail = {
       from: 'noreply@feel.ainna.co.jp',
-      to: 'ishii@ainna.jp',
+      to: 'ml-design@ainna.jp',
       subject: `【新規予約】${name}様 - ${dateStr} ${time}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -250,7 +250,7 @@ export const sendEventReservationHttp = functions.region('asia-northeast1').http
     // 管理者への通知メール
     const adminEmail = {
       from: 'noreply@feel.ainna.co.jp',
-      to: 'ishii@ainna.jp',
+      to: 'ml-design@ainna.jp',
       subject: `【新規予約】${name}様 - ${dateStr} ${time}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

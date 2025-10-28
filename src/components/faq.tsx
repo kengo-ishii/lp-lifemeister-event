@@ -40,8 +40,8 @@ export default function FAQ() {
       <div className="max-w-[800px] mx-auto">
         <div className="flex justify-center">
           <Image
-            src="/assetes/image/faq.png"
-            alt="よくある質問（FAQ）"
+            src="/assetes/image/faq.webp"
+            alt="札幌 子供 キッズ ベビー 無料撮影会 よくある質問（FAQ）"
             width={800}
             height={0}
             style={{ width: '100%', height: 'auto' }}
