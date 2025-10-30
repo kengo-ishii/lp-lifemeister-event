@@ -30,12 +30,11 @@ export default function SEOContent() {
 
             <div>
               <h2 className="text-2xl font-semibold mb-3" style={{ fontFamily: 'Noto Sans JP', color: '#604c3fff' }}>
-                子供・キッズ・ベビー・赤ちゃんの撮影に対応
+                キッズ・ベビーの撮影におすすめ
               </h2>
               <p className="leading-relaxed" style={{ fontFamily: 'Noto Sans JP', color: '#8f8279ff' }}>
-                新生児や幼児など0歳から3歳くらいまでの年齢のお子様の撮影に対応しています。
-                赤ちゃんのハーフバースデーや1歳のお誕生日記念など、
-                お子様の成長の節目にぜひご利用ください。
+                0歳から3歳くらいまでのお子様の撮影にもおすすめです。赤ちゃんのハーフバースデーや1歳のお誕生日記念、年賀状やインスタ用など、
+                お子様の成長の節目にもぜひご利用ください。
               </p>
             </div>
 
@@ -56,8 +55,8 @@ export default function SEOContent() {
               </h2>
               <p className="leading-relaxed" style={{ fontFamily: 'Noto Sans JP', color: '#8f8279ff' }}>
                 本イベントは札幌市の正式な後援を受けており、安心してご参加いただけます。
-                撮影と合わせて、子育て家族のためのライフプラン相談も無料で受けられます。
-                お金の専門家が、教育資金や住宅購入など、将来の家族計画についてアドバイスいたします。
+                撮影と合わせて子育て家族のためのライフプランミニ相談も、無料で受けられます。
+                約10〜15分ですが、教育資金や住宅購入など、将来未来を少しだけ考えてみませんか。
               </p>
             </div>
           </div>

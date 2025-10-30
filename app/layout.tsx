@@ -11,10 +11,12 @@ export const metadata: Metadata = {
   keywords: ['札幌', '子育て', '無料撮影会', '子供', '撮影会', 'キッズ', 'ベビー', '赤ちゃん', '札幌 撮影会', '札幌 子供 撮影会', '札幌 無料撮影会', '札幌 子育て イベント', '家族撮影', 'ライフプラン'],
   icons: {
     icon: [
+      { url: '/favicon.ico', sizes: 'any' },
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.png', sizes: '512x512', type: 'image/png' },
     ],
-    shortcut: '/favicon.png',
+    shortcut: '/favicon.ico',
     apple: '/favicon.png',
   },
   openGraph: {
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
     ],
     type: 'website',
     locale: 'ja_JP',
-    siteName: 'feel by AINNA',
+    siteName: 'TOTTOK 札幌',
   },
   twitter: {
     card: 'summary_large_image',
@@ -48,17 +50,31 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const jsonLd = {
+  // WebSiteタイプの構造化データ（Google検索結果のサイト名表示用）
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'TOTTOK 札幌',
+    alternateName: 'TOTTOK',
+    url: 'https://totok.ainna.jp',
+  }
+
+  // Eventタイプの構造化データ
+  const eventJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: '札幌 子供・キッズ・ベビー 無料撮影会 feel by AINNA',
     description: '札幌で開催される子育て家族のための無料撮影会。子供・キッズ・ベビー・赤ちゃんの笑顔をプロカメラマンが撮影し、撮影データを無料でプレゼント。',
+    startDate: '2025-11-08T10:00:00+09:00',
+    endDate: '2025-11-09T16:30:00+09:00',
+    image: 'https://totok.ainna.jp/images/hero.png',
     location: {
       '@type': 'Place',
-      name: '札幌',
+      name: '札幌サンプラザ３階セミナールーム',
       address: {
         '@type': 'PostalAddress',
-        addressLocality: '札幌市',
+        streetAddress: '北24条西5丁目',
+        addressLocality: '札幌市北区',
         addressRegion: '北海道',
         addressCountry: 'JP',
       },
@@ -68,12 +84,18 @@ export default function RootLayout({
       name: 'AINNA',
       url: 'https://totok.ainna.jp',
     },
+    performer: {
+      '@type': 'Person',
+      name: 'プロカメラマン',
+    },
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'JPY',
       availability: 'https://schema.org/InStock',
-      description: '無料撮影会',
+      url: 'https://totok.ainna.jp/#entry-section',
+      validFrom: '2025-10-01T00:00:00+09:00',
+      description: '無料撮影会＋ライフプラン相談',
     },
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
@@ -82,6 +104,8 @@ export default function RootLayout({
       audienceType: '子育て中の家族、子供、キッズ、ベビー、赤ちゃん',
     },
   }
+
+  const jsonLdArray = [websiteJsonLd, eventJsonLd]
 
   return (
     <html lang="ja">
@@ -94,7 +118,7 @@ export default function RootLayout({
         {/* 構造化データ */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArray) }}
         />
       </head>
       <body className={inter.className}>{children}</body>

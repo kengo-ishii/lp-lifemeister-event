@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { ReactNode } from 'react'
 
 interface NewsItem {
   date: string
@@ -9,7 +10,36 @@ interface NewsItem {
   image?: string
 }
 
+// URLを検出してリンクに変換する関数
+const linkifyText = (text: string): ReactNode => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g
+  const parts = text.split(urlRegex)
+  const urlPattern = /^https?:\/\//
+  
+  return parts.map((part, index) => {
+    if (urlPattern.test(part)) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 hover:text-blue-800 underline break-all"
+        >
+          {part}
+        </a>
+      )
+    }
+    return part
+  })
+}
+
 const newsData: NewsItem[] = [
+  {
+    date: '2025.10.30',
+    title: '11月撮影会カメラマン決定',
+    description: '辨野 智哉 / TOMOYA BENNO\nInstagram\nhttps://www.instagram.com/tbenno.works/\nウェディングムービーやMV、PV、空撮、写真撮影\nなど多様なジャンルで活躍するフォトグラファー',
+  },
   {
     date: '2025.10.28',
     title: '札幌市の正式イベントとして後援決定',
@@ -56,8 +86,8 @@ export default function News() {
                     <h3 className="text-xl font-semibold mb-2" style={{ fontFamily: 'Noto Sans JP', color: '#604c3fff' }}>
                       {item.title}
                     </h3>
-                    <p className="leading-relaxed" style={{ fontFamily: 'Noto Sans JP', color: '#8f8279ff' }}>
-                      {item.description}
+                    <p className="leading-relaxed whitespace-pre-line" style={{ fontFamily: 'Noto Sans JP', color: '#8f8279ff' }}>
+                      {linkifyText(item.description)}
                     </p>
                   </div>
                 </div>
