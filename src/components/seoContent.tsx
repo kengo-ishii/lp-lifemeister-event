@@ -8,7 +8,8 @@ export default function SEOContent() {
           <div className="bg-white rounded-lg shadow-md p-8">
           <div className="text-left mb-8">
             <h1 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: 'Noto Sans JP', color: '#604c3fff' }}>
-              札幌市後援！<br />プロカメラマンによる子供の無料撮影会
+              札幌市後援！
+              <br />プロカメラマンによる子供の無料撮影会
             </h1>
             <p className="text-lg leading-relaxed mb-4" style={{ fontFamily: 'Noto Sans JP', color: '#8f8279ff' }}>
               feel by AINNAは、札幌市後援の子育て家族のための無料撮影会イベントです。
