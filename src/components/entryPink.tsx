@@ -29,6 +29,17 @@ export default function EntryPink() {
     '16:00〜16:30'
   ]
 
+  // 満員のスロットを定義
+  const fullSlots: { [key: string]: string[] } = {
+    '2025-11-08': ['10:00〜10:30', '11:00〜11:30', '13:00〜13:30', '13:30〜14:00', '14:00〜14:30'],
+    '2025-11-09': ['11:00〜11:30', '14:00〜14:30', '16:00〜16:30']
+  }
+
+  // 指定の日付と時間の組み合わせが満員かどうかをチェック
+  const isSlotFull = (date: string, time: string): boolean => {
+    return fullSlots[date]?.includes(time) || false
+  }
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData(prev => ({
@@ -128,21 +139,27 @@ export default function EntryPink() {
             <div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">希望時間帯を選択</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                {timeSlots.map((time) => (
-                  <button
-                    key={time}
-                    type="button"
-                    onClick={() => setSelectedTime(time)}
-                    className={`p-3 rounded-lg transition-colors text-sm ${
-                      selectedTime === time
-                        ? 'text-white'
-                        : 'bg-white text-gray-700'
-                    }`}
-                    style={selectedTime === time ? { backgroundColor: '#e4157fff' } : {}}
-                  >
-                    {time}
-                  </button>
-                ))}
+                {timeSlots.map((time) => {
+                  const isFull = selectedDate ? isSlotFull(selectedDate, time) : false
+                  return (
+                    <button
+                      key={time}
+                      type="button"
+                      onClick={() => !isFull && setSelectedTime(time)}
+                      disabled={isFull}
+                      className={`p-3 rounded-lg transition-colors text-sm ${
+                        isFull
+                          ? 'bg-gray-300 text-gray-500 cursor-not-allowed opacity-60'
+                          : selectedTime === time
+                          ? 'text-white'
+                          : 'bg-white text-gray-700'
+                      }`}
+                      style={selectedTime === time && !isFull ? { backgroundColor: '#e4157fff' } : {}}
+                    >
+                      {time} {isFull && <span className="text-xs block">(満員)</span>}
+                    </button>
+                  )
+                })}
               </div>
             </div>
 
@@ -234,10 +251,10 @@ export default function EntryPink() {
             <div className="text-center">
               <button
                 type="submit"
-                disabled={!selectedDate || !selectedTime || !formData.name || !formData.email || isSubmitting}
+                disabled={!selectedDate || !selectedTime || !formData.name || !formData.email || isSubmitting || (selectedDate && selectedTime ? isSlotFull(selectedDate, selectedTime) : false)}
                 className="text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors disabled:cursor-not-allowed shadow-lg hover:shadow-xl flex items-center justify-center mx-auto min-w-[200px]"
                 style={{ 
-                  backgroundColor: (!selectedDate || !selectedTime || !formData.name || !formData.email || isSubmitting) ? '#9ca3af' : '#e4157fff' 
+                  backgroundColor: (!selectedDate || !selectedTime || !formData.name || !formData.email || isSubmitting || (selectedDate && selectedTime ? isSlotFull(selectedDate, selectedTime) : false)) ? '#9ca3af' : '#e4157fff' 
                 }}
               >
                 {isSubmitting ? (

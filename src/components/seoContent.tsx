@@ -31,16 +31,6 @@ export default function SEOContent() {
 
             <div>
               <h2 className="text-2xl font-semibold mb-3" style={{ fontFamily: 'Noto Sans JP', color: '#604c3fff' }}>
-                キッズ・ベビーの撮影におすすめ
-              </h2>
-              <p className="leading-relaxed" style={{ fontFamily: 'Noto Sans JP', color: '#8f8279ff' }}>
-                0歳から3歳くらいまでのお子様の撮影にもおすすめです。赤ちゃんのハーフバースデーや1歳のお誕生日記念、年賀状やインスタ用など、
-                お子様の成長の節目にもぜひご利用ください。
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-semibold mb-3" style={{ fontFamily: 'Noto Sans JP', color: '#604c3fff' }}>
                 札幌で完全無料の撮影会
               </h2>
               <p className="leading-relaxed" style={{ fontFamily: 'Noto Sans JP', color: '#8f8279ff' }}>
