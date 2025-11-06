@@ -36,6 +36,11 @@ const linkifyText = (text: string): ReactNode => {
 
 const newsData: NewsItem[] = [
   {
+    date: '2025.11.06',
+    title: '一部時間帯にて満席になっております',
+    description: 'たくさんのお申し込みありがとうございます！一部の時間帯で満席になっております。残りわずかですので、気になる方はお早めにお申し込みください。',
+  },
+  {
     date: '2025.10.30',
     title: '11月撮影会カメラマン決定',
     description: '辨野 智哉 / TOMOYA BENNO\nInstagram\nhttps://www.instagram.com/tbenno.works/\nウェディングムービーやMV、PV、空撮、写真撮影\nなど多様なジャンルで活躍するフォトグラファー',
